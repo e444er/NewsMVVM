@@ -1,4 +1,4 @@
-package com.devv.newsmvvm
+package com.devv.newsmvvm.models
 
 data class Source(
     val id: Any,

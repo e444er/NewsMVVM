@@ -1,6 +1,6 @@
 package com.devv.newsmvvm.api
 
-import com.devv.newsmvvm.NewsResponse
+import com.devv.newsmvvm.models.NewsResponse
 import com.devv.newsmvvm.util.Constants.Companion.API_KEY
 import retrofit2.Response
 import retrofit2.http.GET
