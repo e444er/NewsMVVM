@@ -38,7 +38,7 @@ class BreakingNewsFragment: Fragment(R.layout.fragment_breaking_news) {
                     response.message?.let{message ->
                         Log.e(TAG, "An error occured: $message")
                     }
-                }
+                 }
                 is Resource.Loading -> {
                     showProgressbar()
                 }
