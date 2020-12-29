@@ -2,8 +2,9 @@ package com.devv.newsmvvm.repository
 
 import com.devv.newsmvvm.api.RetrofitInstance
 import com.devv.newsmvvm.db.ArticleDatabase
+import com.devv.newsmvvm.models.Article
 
-class NewsRepository(
+class  NewsRepository(
     val db: ArticleDatabase
 ) {
     suspend fun getBreakingNews(countryCode: String, pageNumber:Int) =
@@ -11,4 +12,10 @@ class NewsRepository(
 
     suspend fun searchNews(searchQuery: String, pageNumber:Int) =
         RetrofitInstance.api.searchForNews(searchQuery, pageNumber)
+
+    suspend fun upsert(article: Article) = db.getArticleDao().upsert(article)
+
+    fun getSavedNews() = db.getArticleDao().getAllArticle()
+
+    suspend fun deleteArticle(article: Article) = db.getArticleDao().deleteArticle(article)
 }

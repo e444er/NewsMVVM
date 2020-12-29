@@ -12,6 +12,11 @@ import kotlinx.android.synthetic.main.activity_news.*
 
 class NewsActivity : AppCompatActivity() {
 
+
+//    buildFeatures {
+//        viewBinding true
+//    }
+
     lateinit var viewModel: NewsViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
