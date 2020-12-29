@@ -1,7 +1,6 @@
 package com.devv.newsmvvm.ui.fragments
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.AbsListView
 import android.widget.Toast
@@ -12,14 +11,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.devv.newsmvvm.R
 import com.devv.newsmvvm.adapters.NewsAdapters
+import com.devv.newsmvvm.databinding.FragmentBreakingNewsBinding
 import com.devv.newsmvvm.ui.NewsActivity
 import com.devv.newsmvvm.ui.NewsViewModel
 import com.devv.newsmvvm.util.Constants.Companion.QUERY_PAGE_SIZE
 import com.devv.newsmvvm.util.Resource
-import kotlinx.android.synthetic.main.fragment_breaking_news.*
 
 class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
+    private lateinit var binding: FragmentBreakingNewsBinding
     lateinit var viewModel: NewsViewModel
     lateinit var newsAdapter: NewsAdapters
 
@@ -27,6 +27,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        binding = FragmentBreakingNewsBinding.bind(view)
         viewModel = (activity as NewsActivity).viewModel
         setupRecyclerView()
 
@@ -49,7 +50,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
                         val totalPages = newsResponse.totalResults / QUERY_PAGE_SIZE + 2
                         isLoading = viewModel.breakingNewsPage == totalPages
                         if (isLastPage) {
-                        rvBreakingNews.setPadding(0, 0, 0, 0)
+                        binding.rvBreakingNews.setPadding(0, 0, 0, 0)
                     }
                     }
                 }
@@ -68,12 +69,12 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
     }
 
     private fun hideProgressbar() {
-        paginationProgressBar.visibility = View.INVISIBLE
+        binding.paginationProgressBar.visibility = View.INVISIBLE
         isLoading = false
     }
 
     private fun showProgressbar() {
-        paginationProgressBar.visibility = View.VISIBLE
+        binding.paginationProgressBar.visibility = View.VISIBLE
         isLoading = false
     }
 
@@ -111,7 +112,7 @@ class BreakingNewsFragment : Fragment(R.layout.fragment_breaking_news) {
 
     private fun setupRecyclerView() {
         newsAdapter = NewsAdapters()
-        rvBreakingNews.apply {
+        binding.rvBreakingNews.apply {
             adapter = newsAdapter
             layoutManager = LinearLayoutManager(activity)
             addOnScrollListener(this@BreakingNewsFragment.scrollListener)
