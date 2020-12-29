@@ -1,5 +1,8 @@
 <resources>
-    <string name="app_name">NewsMVVM</string>
+    <string name="app_name">Новости</string>
     <string name="fab">fab</string>
     <string name="search">Search...</string>
+    <string name="like">Like</string>
+    <string name="news">Новости</string>
+    <string name="search_news">Поиск</string>
 </resources>
